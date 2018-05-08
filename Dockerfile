@@ -43,7 +43,7 @@ RUN apk add --no-cache --update nfs-utils && \
     rm /sbin/halt /sbin/poweroff /sbin/reboot
 
 HEALTHCHECK --interval=1s --timeout=5s --start-period=60s  \
-    CMD mount -t nfs | grep "$SERVER:$SHARE" || exit 1
+    CMD mount -t "$FSTYPE" | grep "$SERVER:$SHARE" || exit 1
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
