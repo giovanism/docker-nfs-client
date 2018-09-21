@@ -11,7 +11,7 @@ echo "Mounting nfs..."
 
 mkdir -p "$MOUNTPOINT"
 rpcbind -f &
-mount -vvv -t "$FSTYPE" -o "$MOUNT_OPTIONS" "$SERVER:$SHARE" "$MOUNTPOINT"
+mount -v -t "$FSTYPE" -o "$MOUNT_OPTIONS" "$SERVER:$SHARE" "$MOUNTPOINT"
 mount | grep nfs
 
 trap umount_nfs SIGHUP SIGINT SIGTERM
